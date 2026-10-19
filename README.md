@@ -300,7 +300,7 @@ input:focus { border-color: var(--pink); }
 
 <header class="top">
   <div class="flower">🌷 🌸 🌷</div>
-  <h1>HÀNH TRÌNH SẮC HỒNG</h1>
+  <h1>HÀNH TRÌNH RỰC RỠ</h1>
   <div class="subtitle">
     Chào mừng Ngày Phụ nữ Việt Nam 20/10<br>
     Tôn vinh những người phụ nữ Việt Nam
@@ -310,7 +310,7 @@ input:focus { border-color: var(--pink); }
 <!-- MÀN HÌNH BẮT ĐẦU -->
 <main class="card" id="intro">
   <div class="eyebrow">🌸 SẴN SÀNG CHINH PHỤC?</div>
-  <h2>Chào mừng bạn đến với hành trình sắc hồng!</h2>
+  <h2>Chào mừng bạn đến với hành trình rực rỡ!</h2>
 
   Vượt qua 3 chặng thử thách để khám phá lịch sử,
   những tấm gương phụ nữ Việt Nam và các câu đố vui.
@@ -321,7 +321,7 @@ input:focus { border-color: var(--pink); }
 
   <div class="rules">
     <strong>📌 THỂ LỆ</strong><br>
-    ⏱️ Mỗi câu hỏi có 10 giây suy nghĩ và trả lời.<br>
+    ⏱️ Mỗi câu hỏi có 20 giây suy nghĩ và trả lời.<br>
     🌸 Mỗi câu đúng được 1 điểm, tối đa 10 điểm.<br>
     💗 Trả lời sai sẽ hiện đáp án đúng.<br>
     ↷ Được bỏ qua câu hỏi nhưng không được quay lại.<br>
@@ -338,7 +338,7 @@ input:focus { border-color: var(--pink); }
   <div class="headline">
     <span class="pill" id="stage">CHẶNG 1</span>
     <span class="pill" id="progressText">Câu 1/10</span>
-    <div class="timer" id="timer">10</div>
+    <div class="timer" id="timer">20</div>
   </div>
 
   <div class="track">
@@ -434,7 +434,7 @@ const questions = [
     opts: [
       "Hội Phụ nữ Cứu quốc",
       "Hội Phụ nữ Phản đế Việt Nam",
-      "Hội Nữ thanh niên",
+      "Hội Phụ nữ Phản đế Đông Dương",
       "Hội Phụ nữ Giải phóng"
     ],
     a: 1,
