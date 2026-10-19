@@ -4,13 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hành trình rực rỡ - Chào mừng 20/10</title>
+<title>Hành trình rực rỡ - 20/10</title>
 
 <style>
 :root {
   --pink: #ed4f91;
   --dark: #87345f;
   --purple: #a77ce0;
+  --green: #218b68;
 }
 * { box-sizing: border-box; }
 
@@ -36,7 +37,6 @@ h1 {
   margin: 8px 0;
   line-height: 1.25;
 }
-
 .subtitle { color: #9c6380; line-height: 1.7; }
 
 .card {
@@ -46,7 +46,6 @@ h1 {
   padding: clamp(18px,4vw,32px);
   box-shadow: 0 12px 35px #8c456514;
 }
-
 .hidden { display: none !important; }
 
 .eyebrow {
@@ -55,7 +54,6 @@ h1 {
   font-weight: bold;
   letter-spacing: 1.3px;
 }
-
 h2 { color: var(--dark); line-height: 1.45; }
 
 input[type="text"], input[type="number"] {
@@ -108,6 +106,17 @@ input:focus { border-color: var(--pink); }
   font-weight: bold;
 }
 
+.timer-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.timer-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #9c6380;
+}
 .timer {
   width: 72px;
   height: 72px;
@@ -116,17 +125,19 @@ input:focus { border-color: var(--pink); }
   display: grid;
   place-items: center;
   color: var(--pink);
-  font-size: 25px;
+  font-size: 26px;
   font-weight: bold;
   flex-shrink: 0;
+  background: #fff8fb;
 }
 .timer.urgent {
   border-color: #e34e4e;
   color: #e34e4e;
-  animation: pulse .7s infinite alternate;
+  background: #fff0f0;
+  animation: pulse .5s infinite alternate;
 }
 @keyframes pulse {
-  to { transform: scale(1.06); }
+  to { transform: scale(1.05); }
 }
 
 .track {
@@ -140,7 +151,7 @@ input:focus { border-color: var(--pink); }
   height: 100%;
   width: 0;
   background: linear-gradient(90deg,#ef659e,#a77ce0);
-  transition: width .25s;
+  transition: width .2s;
 }
 
 .question {
@@ -223,7 +234,6 @@ input:focus { border-color: var(--pink); }
   font-size: 25px !important;
   text-align: center;
 }
-
 .result-score {
   font-size: 54px;
   font-weight: bold;
@@ -250,7 +260,6 @@ input:focus { border-color: var(--pink); }
   margin-bottom: 6px;
 }
 .stat span { font-size: 13px; color: #91627b; }
-
 .note {
   font-size: 13px;
   color: #987a8c;
@@ -283,9 +292,8 @@ input:focus { border-color: var(--pink); }
 <main class="card" id="intro">
   <div class="eyebrow">🌸 SẴN SÀNG CHINH PHỤC?</div>
   <h2>Chào mừng bạn đến với Hành trình rực rỡ!</h2>
-
-  Hãy cùng khám phá những dấu ấn lịch sử, những tấm gương
-  phụ nữ Việt Nam và các câu đố vui thú vị.
+  Hãy cùng khám phá lịch sử, những tấm gương phụ nữ Việt Nam
+  và các câu đố vui thú vị.
 
   <label for="playerName"><strong>Họ và tên người chơi</strong></label>
   <input id="playerName" type="text" maxlength="100"
@@ -293,12 +301,12 @@ input:focus { border-color: var(--pink); }
 
   <div class="rules">
     <strong>📌 THỂ LỆ TRÒ CHƠI</strong><br>
-    ⏱️ Mỗi câu hỏi có 20 giây suy nghĩ và trả lời.<br>
+    ⏱️ Mỗi câu có 20 giây suy nghĩ và trả lời.<br>
     🌸 Có 10 câu hỏi, chia thành 3 chặng.<br>
     🏆 Mỗi câu đúng được 1 điểm, tối đa 10 điểm.<br>
     💗 Trả lời sai sẽ hiện đáp án đúng.<br>
     ↷ Được bỏ qua câu hỏi nhưng không được quay lại.<br>
-    🎉 Kết thúc, xem số câu đúng và tổng thời gian tham gia.
+    🎉 Kết thúc, xem số câu đúng và thời gian tham gia.
   </div>
 
   <button class="btn primary full" id="startBtn">
@@ -311,7 +319,10 @@ input:focus { border-color: var(--pink); }
   <div class="headline">
     <span class="pill" id="stage">CHẶNG 1/3</span>
     <span class="pill" id="progressText">Câu 1/10</span>
-    <div class="timer" id="timer">20</div>
+    <div class="timer-wrap">
+      <span class="timer-label">THỜI GIAN</span>
+      <div class="timer" id="timer">20</div>
+    </div>
   </div>
 
   <div class="track"><div class="bar" id="bar"></div></div>
@@ -379,6 +390,8 @@ input:focus { border-color: var(--pink); }
 </div>
 
 <script>
+"use strict";
+
 const TOTAL = 10;
 const TIME_PER_QUESTION = 20;
 
@@ -514,7 +527,6 @@ let deadline = 0;
 let timerId = null;
 let locked = false;
 let player = "";
-let finishTime = null;
 let finalRecord = null;
 
 const $ = id => document.getElementById(id);
@@ -539,6 +551,7 @@ function showPanel(panel) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+/* BẮT ĐẦU TRÒ CHƠI */
 $("startBtn").addEventListener("click", () => {
   player = $("playerName").value.trim();
 
@@ -548,6 +561,7 @@ $("startBtn").addEventListener("click", () => {
     return;
   }
 
+  clearInterval(timerId);
   index = 0;
   score = 0;
   wrong = 0;
@@ -559,6 +573,7 @@ $("startBtn").addEventListener("click", () => {
   renderQuestion();
 });
 
+/* HIỂN THỊ CÂU HỎI VÀ KHỞI ĐỘNG ĐỒNG HỒ */
 function renderQuestion() {
   clearInterval(timerId);
   locked = false;
@@ -576,6 +591,8 @@ function renderQuestion() {
   $("nextBtn").classList.add("hidden");
   $("skipBtn").classList.remove("hidden");
   $("skipBtn").disabled = false;
+
+  $("timer").textContent = TIME_PER_QUESTION;
   $("timer").classList.remove("urgent");
 
   const area = $("answerArea");
@@ -600,21 +617,13 @@ function renderQuestion() {
     submit.textContent = "XÁC NHẬN ĐÁP ÁN";
 
     form.append(input, submit);
-
     form.addEventListener("submit", e => {
       e.preventDefault();
-      if (locked || input.value.trim() === "") return;
+      if (locked) return;
+      if (input.value.trim() === "") return;
       checkAnswer(Number(input.value));
     });
-
     area.append(form);
-
-    setTimeout(() => {
-      if (!locked && input.isConnected) {
-        input.focus({ preventScroll: true });
-      }
-    }, 50);
-
   } else {
     const options = document.createElement("div");
     options.className = "options";
@@ -639,29 +648,37 @@ function renderQuestion() {
     area.append(options);
   }
 
-  // Mỗi câu hỏi có chính xác 20 giây
+  /*
+    Dùng mốc thời gian thực để tính số giây còn lại.
+    Không giảm biến đếm từng giây, tránh lệch thời gian.
+  */
   deadline = Date.now() + TIME_PER_QUESTION * 1000;
+
+  // Chạy cập nhật ngay lập tức, sau đó cập nhật liên tục.
   updateTimer();
-  timerId = setInterval(updateTimer, 100);
+  timerId = window.setInterval(updateTimer, 100);
 }
 
+/* ĐỒNG HỒ ĐẾM NGƯỢC */
 function updateTimer() {
   if (locked) return;
 
+  const millisecondsLeft = deadline - Date.now();
   const remaining = Math.max(
     0,
-    Math.ceil((deadline - Date.now()) / 1000)
+    Math.ceil(millisecondsLeft / 1000)
   );
 
   $("timer").textContent = remaining;
-  $("timer").classList.toggle("urgent", remaining <= 3);
+  $("timer").classList.toggle("urgent", remaining <= 5);
 
-  if (remaining <= 0) {
+  if (millisecondsLeft <= 0) {
     clearInterval(timerId);
     lockAsTimeout();
   }
 }
 
+/* KHÓA TOÀN BỘ Ô TRẢ LỜI */
 function disableAnswers() {
   $("answerArea").querySelectorAll("button, input").forEach(el => {
     el.disabled = true;
@@ -669,17 +686,20 @@ function disableAnswers() {
   $("skipBtn").disabled = true;
 }
 
+/* LẤY ĐÁP ÁN ĐÚNG */
 function getCorrectAnswer(item) {
   if (item.type === "number") return String(item.a);
   return "ABCD"[item.a] + ". " + item.opts[item.a];
 }
 
+/* TÔ MÀU ĐÁP ÁN ĐÚNG */
 function highlightCorrect(item) {
   $("answerArea").querySelectorAll(".option").forEach((button, i) => {
     if (i === item.a) button.classList.add("correct");
   });
 }
 
+/* HIỆN NÚT ĐI TIẾP */
 function showNextButton() {
   $("skipBtn").classList.add("hidden");
   $("nextBtn").classList.remove("hidden");
@@ -687,9 +707,14 @@ function showNextButton() {
     index === TOTAL - 1 ? "XEM KẾT QUẢ 🏆" : "CÂU TIẾP THEO →";
 }
 
+/* KIỂM TRA ĐÁP ÁN */
 function checkAnswer(value) {
-  if (locked || Date.now() >= deadline) {
-    if (!locked) lockAsTimeout();
+  if (locked) return;
+
+  // Chặn trả lời nếu thời hạn đã kết thúc,
+  // kể cả khi trình duyệt chưa kịp chạy bộ đếm.
+  if (Date.now() >= deadline) {
+    lockAsTimeout();
     return;
   }
 
@@ -718,6 +743,7 @@ function checkAnswer(value) {
   showNextButton();
 }
 
+/* HẾT 20 GIÂY */
 function lockAsTimeout() {
   if (locked) return;
 
@@ -727,6 +753,9 @@ function lockAsTimeout() {
 
   const item = questions[index];
   disableAnswers();
+
+  $("timer").textContent = "0";
+  $("timer").classList.add("urgent");
 
   $("feedback").className = "feedback neutral";
   $("feedback").textContent =
@@ -738,8 +767,15 @@ function lockAsTimeout() {
   showNextButton();
 }
 
+/* BỎ QUA CÂU HỎI */
 $("skipBtn").addEventListener("click", () => {
   if (locked) return;
+
+  // Nếu đã hết hạn thì xử lý là hết giờ.
+  if (Date.now() >= deadline) {
+    lockAsTimeout();
+    return;
+  }
 
   locked = true;
   clearInterval(timerId);
@@ -758,6 +794,7 @@ $("skipBtn").addEventListener("click", () => {
   showNextButton();
 });
 
+/* SANG CÂU TIẾP THEO */
 $("nextBtn").addEventListener("click", () => {
   if (!locked) return;
 
@@ -769,10 +806,11 @@ $("nextBtn").addEventListener("click", () => {
   }
 });
 
+/* TỔNG KẾT */
 function finishGame() {
   clearInterval(timerId);
 
-  finishTime = new Date();
+  const finishedAt = new Date();
   const totalSeconds = elapsed();
 
   $("bar").style.width = "100%";
@@ -784,7 +822,7 @@ function finishGame() {
   $("timeStat").textContent = formatTime(totalSeconds);
 
   $("finishedAt").textContent =
-    "Hoàn thành lúc: " + finishTime.toLocaleString("vi-VN");
+    "Hoàn thành lúc: " + finishedAt.toLocaleString("vi-VN");
 
   $("resultEmoji").textContent =
     score === TOTAL ? "🏆🌸" :
@@ -804,22 +842,24 @@ function finishGame() {
     wrong,
     skipped,
     duration: formatTime(totalSeconds),
-    finishedAt: finishTime.toLocaleString("vi-VN")
+    finishedAt: finishedAt.toLocaleString("vi-VN")
   };
 
   showPanel(result);
 }
 
+/* CHƠI LẠI */
 $("restartBtn").addEventListener("click", () => {
+  clearInterval(timerId);
   $("playerName").value = player;
   showPanel(intro);
 });
 
+/* TẢI KẾT QUẢ CSV */
 $("downloadBtn").addEventListener("click", () => {
   if (!finalRecord) return;
 
   const r = finalRecord;
-
   const rows = [
     [
       "Họ và tên",
