@@ -1,16 +1,15 @@
-# phunuvietnam
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hành trình rực rỡ - 20/10</title>
+<title>Hành trình rực rỡ - Chào mừng 20/10</title>
 
 <style>
 :root {
-  --pink: #e94f91;
+  --pink: #ed4f91;
   --dark: #87345f;
-  --light: #fff3f8;
   --purple: #a77ce0;
 }
 * { box-sizing: border-box; }
@@ -21,9 +20,8 @@ body {
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: #563449;
-  background: linear-gradient(135deg,#fff5f8,#f7efff,#fff8ec);
+  background: linear-gradient(135deg,#fff2f7,#f4efff,#fff8e9);
 }
-
 button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: default; }
@@ -34,15 +32,12 @@ button:disabled { cursor: default; }
 
 h1 {
   color: var(--dark);
-  font-size: clamp(25px,5vw,39px);
+  font-size: clamp(26px,5vw,40px);
   margin: 8px 0;
   line-height: 1.25;
 }
 
-.subtitle {
-  color: #9c6380;
-  line-height: 1.7;
-}
+.subtitle { color: #9c6380; line-height: 1.7; }
 
 .card {
   background: rgba(255,255,255,.97);
@@ -72,7 +67,6 @@ input[type="text"], input[type="number"] {
   margin: 10px 0 16px;
   background: #fffafd;
 }
-
 input:focus { border-color: var(--pink); }
 
 .btn {
@@ -81,13 +75,11 @@ input:focus { border-color: var(--pink); }
   padding: 14px 19px;
   font-weight: bold;
 }
-
 .primary {
-  background: linear-gradient(100deg,#e94f91,#b66bd4);
+  background: linear-gradient(100deg,#ed4f91,#a77ce0);
   color: white;
   box-shadow: 0 5px 12px #e94f9130;
 }
-
 .secondary { background: #f9eaf2; color: var(--dark); }
 .full { width: 100%; margin-top: 8px; }
 
@@ -107,7 +99,6 @@ input:focus { border-color: var(--pink); }
   gap: 10px;
   flex-wrap: wrap;
 }
-
 .pill {
   padding: 8px 12px;
   border-radius: 30px;
@@ -118,24 +109,22 @@ input:focus { border-color: var(--pink); }
 }
 
 .timer {
-  width: 66px;
-  height: 66px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 5px solid #f6c7dc;
   display: grid;
   place-items: center;
   color: var(--pink);
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
   flex-shrink: 0;
 }
-
 .timer.urgent {
   border-color: #e34e4e;
   color: #e34e4e;
   animation: pulse .7s infinite alternate;
 }
-
 @keyframes pulse {
   to { transform: scale(1.06); }
 }
@@ -147,7 +136,6 @@ input:focus { border-color: var(--pink); }
   overflow: hidden;
   margin: 18px 0 24px;
 }
-
 .bar {
   height: 100%;
   width: 0;
@@ -161,13 +149,11 @@ input:focus { border-color: var(--pink); }
   margin: 20px 0;
   color: #57334a;
 }
-
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
 .option {
   display: flex;
   align-items: flex-start;
@@ -181,7 +167,6 @@ input:focus { border-color: var(--pink); }
   min-height: 65px;
   line-height: 1.5;
 }
-
 .letter {
   display: grid;
   place-items: center;
@@ -193,32 +178,26 @@ input:focus { border-color: var(--pink); }
   color: #b73c76;
   font-weight: bold;
 }
-
 .option:hover:not(:disabled) {
   border-color: var(--pink);
   background: #fff7fb;
 }
-
 .option.correct {
   border-color: #35a57b;
   background: #eaf9f2;
 }
-
 .option.correct .letter {
   background: #35a57b;
   color: white;
 }
-
 .option.wrong {
   border-color: #e66b75;
   background: #fff0f0;
 }
-
 .option.wrong .letter {
   background: #e66b75;
   color: white;
 }
-
 .option:disabled { opacity: 1; }
 
 .feedback {
@@ -227,7 +206,6 @@ input:focus { border-color: var(--pink); }
   border-radius: 13px;
   line-height: 1.7;
 }
-
 .feedback.good { background: #eaf9f2; color: #176b4c; }
 .feedback.bad { background: #fff0f0; color: #9a343c; }
 .feedback.neutral { background: #fff6e8; color: #855c19; }
@@ -238,7 +216,6 @@ input:focus { border-color: var(--pink); }
   gap: 10px;
   margin-top: 18px;
 }
-
 .actions .btn { flex: 1; }
 
 .numeric {
@@ -254,28 +231,24 @@ input:focus { border-color: var(--pink); }
   text-align: center;
   margin: 15px 0;
 }
-
 .result-grid {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 12px;
   margin: 22px 0;
 }
-
 .stat {
   background: #fff4f8;
   padding: 17px 10px;
   border-radius: 15px;
   text-align: center;
 }
-
 .stat strong {
   display: block;
   font-size: 25px;
   color: var(--dark);
   margin-bottom: 6px;
 }
-
 .stat span { font-size: 13px; color: #91627b; }
 
 .note {
@@ -283,7 +256,6 @@ input:focus { border-color: var(--pink); }
   color: #987a8c;
   line-height: 1.7;
 }
-
 .champion { font-size: 46px; text-align: center; }
 
 @media(max-width:540px) {
@@ -299,33 +271,34 @@ input:focus { border-color: var(--pink); }
 <div class="app">
 
 <header class="top">
-  <div class="flower">🌷 🌸 🌷</div>
+  <div class="flower">🌷 🌸 ✨ 🌸 🌷</div>
   <h1>HÀNH TRÌNH RỰC RỠ</h1>
   <div class="subtitle">
     Chào mừng Ngày Phụ nữ Việt Nam 20/10<br>
-    Tôn vinh những người phụ nữ Việt Nam
+    Tôn vinh vẻ đẹp, bản lĩnh và những đóng góp của phụ nữ Việt Nam
   </div>
 </header>
 
 <!-- MÀN HÌNH BẮT ĐẦU -->
 <main class="card" id="intro">
   <div class="eyebrow">🌸 SẴN SÀNG CHINH PHỤC?</div>
-  <h2>Chào mừng bạn đến với hành trình rực rỡ!</h2>
+  <h2>Chào mừng bạn đến với Hành trình rực rỡ!</h2>
 
-  Vượt qua 3 chặng thử thách để khám phá lịch sử,
-  những tấm gương phụ nữ Việt Nam và các câu đố vui.
+  Hãy cùng khám phá những dấu ấn lịch sử, những tấm gương
+  phụ nữ Việt Nam và các câu đố vui thú vị.
 
   <label for="playerName"><strong>Họ và tên người chơi</strong></label>
   <input id="playerName" type="text" maxlength="100"
     placeholder="Nhập họ tên của bạn..." autocomplete="name">
 
   <div class="rules">
-    <strong>📌 THỂ LỆ</strong><br>
+    <strong>📌 THỂ LỆ TRÒ CHƠI</strong><br>
     ⏱️ Mỗi câu hỏi có 20 giây suy nghĩ và trả lời.<br>
-    🌸 Mỗi câu đúng được 1 điểm, tối đa 10 điểm.<br>
+    🌸 Có 10 câu hỏi, chia thành 3 chặng.<br>
+    🏆 Mỗi câu đúng được 1 điểm, tối đa 10 điểm.<br>
     💗 Trả lời sai sẽ hiện đáp án đúng.<br>
     ↷ Được bỏ qua câu hỏi nhưng không được quay lại.<br>
-    🏆 Kết thúc, xem điểm số và thời gian tham gia.
+    🎉 Kết thúc, xem số câu đúng và tổng thời gian tham gia.
   </div>
 
   <button class="btn primary full" id="startBtn">
@@ -336,15 +309,12 @@ input:focus { border-color: var(--pink); }
 <!-- MÀN HÌNH CÂU HỎI -->
 <main class="card hidden" id="quiz">
   <div class="headline">
-    <span class="pill" id="stage">CHẶNG 1</span>
+    <span class="pill" id="stage">CHẶNG 1/3</span>
     <span class="pill" id="progressText">Câu 1/10</span>
     <div class="timer" id="timer">20</div>
   </div>
 
-  <div class="track">
-    <div class="bar" id="bar"></div>
-  </div>
-
+  <div class="track"><div class="bar" id="bar"></div></div>
   <div class="eyebrow" id="stageName"></div>
   <h2 class="question" id="questionText"></h2>
 
@@ -357,7 +327,7 @@ input:focus { border-color: var(--pink); }
   </div>
 
   <p class="note">
-    Khi đã trả lời hoặc bỏ qua, bạn không thể quay lại câu trước.
+    Sau khi trả lời hoặc bỏ qua, bạn không thể quay lại câu trước.
   </p>
 </main>
 
@@ -367,7 +337,6 @@ input:focus { border-color: var(--pink); }
   <div class="eyebrow" style="text-align:center">
     HOÀN THÀNH HÀNH TRÌNH
   </div>
-
   <h2 id="resultTitle" style="text-align:center"></h2>
   <div class="result-score" id="scoreText"></div>
   <div style="text-align:center;color:#9c6380">Số câu trả lời đúng</div>
@@ -397,7 +366,6 @@ input:focus { border-color: var(--pink); }
   <button class="btn primary full" id="downloadBtn">
     TẢI KẾT QUẢ VỀ MÁY (.CSV)
   </button>
-
   <button class="btn secondary full" id="restartBtn">
     CHƠI LẠI 🔄
   </button>
@@ -412,18 +380,14 @@ input:focus { border-color: var(--pink); }
 
 <script>
 const TOTAL = 10;
+const TIME_PER_QUESTION = 20;
 
 const questions = [
   {
     stage: 1,
     title: "Dấu ấn lịch sử",
     q: "Hội Liên hiệp Phụ nữ Việt Nam được chính thức thành lập vào ngày nào?",
-    opts: [
-      "20/10/1930",
-      "8/3/1930",
-      "20/10/1945",
-      "19/5/1930"
-    ],
+    opts: ["20/10/1930", "8/3/1930", "20/10/1945", "19/5/1930"],
     a: 0,
     explain: "Hội được thành lập ngày 20/10/1930."
   },
@@ -434,7 +398,7 @@ const questions = [
     opts: [
       "Hội Phụ nữ Cứu quốc",
       "Hội Phụ nữ Phản đế Việt Nam",
-      "Hội Phụ nữ Phản đế Đông Dương",
+      "Hội Nữ thanh niên",
       "Hội Phụ nữ Giải phóng"
     ],
     a: 1,
@@ -541,12 +505,6 @@ const questions = [
   }
 ];
 
-const stageNames = {
-  1: "DẤU ẤN LỊCH SỬ",
-  2: "NHỮNG ĐÓA HOA ANH HÙNG",
-  3: "HIỂU BIẾT VÀ NỤ CƯỜI"
-};
-
 let index = 0;
 let score = 0;
 let wrong = 0;
@@ -650,6 +608,7 @@ function renderQuestion() {
     });
 
     area.append(form);
+
     setTimeout(() => {
       if (!locked && input.isConnected) {
         input.focus({ preventScroll: true });
@@ -680,7 +639,8 @@ function renderQuestion() {
     area.append(options);
   }
 
-  deadline = Date.now() + 10000;
+  // Mỗi câu hỏi có chính xác 20 giây
+  deadline = Date.now() + TIME_PER_QUESTION * 1000;
   updateTimer();
   timerId = setInterval(updateTimer, 100);
 }
@@ -715,9 +675,7 @@ function getCorrectAnswer(item) {
 }
 
 function highlightCorrect(item) {
-  const buttons = $("answerArea").querySelectorAll(".option");
-
-  buttons.forEach((button, i) => {
+  $("answerArea").querySelectorAll(".option").forEach((button, i) => {
     if (i === item.a) button.classList.add("correct");
   });
 }
@@ -730,7 +688,10 @@ function showNextButton() {
 }
 
 function checkAnswer(value) {
-  if (locked) return;
+  if (locked || Date.now() >= deadline) {
+    if (!locked) lockAsTimeout();
+    return;
+  }
 
   locked = true;
   clearInterval(timerId);
@@ -831,7 +792,7 @@ function finishGame() {
 
   $("message").textContent =
     score === TOTAL
-      ? "Xuất sắc! Bạn đã chinh phục tất cả 10 câu hỏi. Chúc mừng ngày 20/10!"
+      ? "Xuất sắc! Bạn đã chinh phục cả 10 câu hỏi. Chúc mừng ngày 20/10!"
       : score >= 7
       ? "Rất đáng tự hào! Chúc bạn luôn tỏa sáng và lan tỏa yêu thương."
       : "Cảm ơn bạn đã tham gia. Chúc bạn một ngày 20/10 thật vui và ý nghĩa!";
@@ -894,7 +855,7 @@ $("downloadBtn").addEventListener("click", () => {
   const a = document.createElement("a");
 
   a.href = url;
-  a.download = "ket-qua-game-20-10.csv";
+  a.download = "ket-qua-hanh-trinh-ruc-ro-20-10.csv";
   document.body.appendChild(a);
   a.click();
   a.remove();
