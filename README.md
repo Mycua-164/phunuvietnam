@@ -448,8 +448,8 @@ const questions = [
     title: "Những đóa hoa anh hùng",
     q: "Chị Võ Thị Sáu hy sinh tại Côn Đảo khi bao nhiêu tuổi?",
     type: "number",
-    a: 16,
-    explain: "Chị Võ Thị Sáu hy sinh khi mới 16 tuổi."
+    a: 19,
+    explain: "Chị Võ Thị Sáu hy sinh khi mới 19 tuổi."
   },
   {
     stage: 2,
