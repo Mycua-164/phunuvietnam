@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hành trình sắc hồng - 20/10</title>
+<title>Hành trình rực rỡ - 20/10</title>
 
 <style>
 :root {
